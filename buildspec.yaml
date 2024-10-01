@@ -1,20 +1,20 @@
-version: 0.2
+# version: 0.2
 
-phases:
-  install:
-    commands:
-      - echo "Nothing to install in this phase."
-  pre_build:
-    commands:
-      - echo "Starting the pre-build phase."
-  build:
-    commands:
-      - echo "Starting to copy files to S3"
-    #  - aws s3 sync . s3://vardaan-demo-2024/ --exclude "buildspec.yaml"
-  post_build:
-    commands:
-      - echo "All files have been copied to S3."
+# phases:
+#   install:
+#     commands:
+#       - echo "Nothing to install in this phase."
+#   pre_build:
+#     commands:
+#       - echo "Starting the pre-build phase."
+#   build:
+#     commands:
+#       - echo "Starting to copy files to S3"
+#     #  - aws s3 sync . s3://vardaan-demo-2024/ --exclude "buildspec.yaml"
+#   post_build:
+#     commands:
+#       - echo "All files have been copied to S3."
 
-artifacts:
-  files:
-    - '**/*'  # This ensures all files in the build are available
+# artifacts:
+#   files:
+#     - '**/*'  # This ensures all files in the build are available
