@@ -1,6 +1,3 @@
-#Use this script in your User Data Section to Setup your Instance for AWS Pipeline.
-
-
 #!/bin/bash
 sudo yum update
 sudo yum install httpd -y
@@ -12,3 +9,4 @@ sudo ./install auto
 sudo service codedeploy-agent start
 
 
+#Use this script in your User Data Section to Setup your Instance for AWS Pipeline.
