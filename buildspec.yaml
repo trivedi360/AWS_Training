@@ -10,7 +10,7 @@ phases:
   build:
     commands:
       - echo "Starting to copy files to S3"
-      - aws s3 sync . s3://vardaan-demo-2024/ --exclude "buildspec.yaml"
+    #  - aws s3 sync . s3://vardaan-demo-2024/ --exclude "buildspec.yaml"
   post_build:
     commands:
       - echo "All files have been copied to S3."
