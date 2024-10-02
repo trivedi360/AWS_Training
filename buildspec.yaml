@@ -1,20 +1,30 @@
 version: 0.2
 
+env:
+  variables:
+    ECR_URI: "your_ecr_uri"
+    IMAGE_TAG: "aws-demo-ecs"
+
 phases:
-  install:
-    commands:
-      - echo "Nothing to install in this phase."
   pre_build:
     commands:
-      - echo "Starting the pre-build phase."
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin $ECR_URI
   build:
     commands:
-      - echo "Starting to copy files to S3"
-    #  - aws s3 sync . s3://vardaan-demo-2024/ --exclude "buildspec.yaml"
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $ECR_URI:test .
+      - docker tag $ECR_URI:test $ECR_URI:$IMAGE_TAG
   post_build:
     commands:
-      - echo "All files have been copied to S3."
-
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $ECR_URI:$IMAGE_TAG
+      - echo Writing imageDetail file...
+      - printf '{"ImageURI":"%s"}' $ECR_URI:$IMAGE_TAG > imageDetail.json
 artifacts:
   files:
-    - '**/*'  # This ensures all files in the build are available
+    - imageDetail.json
+    - appspec.yaml
+    - taskdef.json
