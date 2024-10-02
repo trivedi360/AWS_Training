@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    ECR_URI: "your_ecr_uri"
+    ECR_URI: "565393046063.dkr.ecr.ap-south-1.amazonaws.com/aws-training"
     IMAGE_TAG: "aws-demo-ecs"
 
 phases:
